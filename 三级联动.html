@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三级联动</title>
+</head>
+<body>
+	<select name="sheng" id="sheng"></select>
+	<select name="shi" id="shi" ></select>
+	<select name="xian" id="xian" ></select>
+	<!-- <script type="text/javascript" src="jquery-1.8.3.min.js"></script> -->
+	<script type="text/javascript">
+		//获取元素对象
+		var sheng = document.getElementById('sheng');
+		var shi = document.getElementById('shi');
+		var xian = document.getElementById('xian');
+
+
+		//定义数组
+		var city = [];
+		city['河北']=['张家口','邯郸'];
+		city['山西']=['太原','大同'];
+		city['河南']=['郑州','洛阳'];
+		var hhh = [];
+		hhh['张家口']=['沽源','宣化'];
+		hhh['邯郸']=['永年','磁县'];
+		hhh['太原']=['太原东','太原西'];
+		hhh['大同']=['大同南','大同北'];
+		hhh['郑州']=['郑州东','西'];
+		hhh['洛阳']=['龙门石窟','白马寺'];
+			
+			var str = '<option value="">++请选择省++</option>';
+
+			for(var i in city){
+				str +='<option value="'+i+'">'+i+'</option>';
+			}
+				sheng.innerHTML = str;
+
+
+			sheng.onchange = function()
+			{
+					var p = city[this.value];
+					// shi.css('display','block');
+					var str = '<option value="">--请选择--</option>';
+					for(var i in p){
+						str += '<option value="'+p[i]+'">'+p[i]+'</option>';
+					}
+					shi.innerHTML = str;
+			}
+
+			shi.onchange = function()
+			{
+				 //xian.css('display','block');
+				var p = hhh[this.value];
+				var str = '<option value="">--请选择--</option>';
+					for(var i in p){
+						str += '<option value="'+p[i]+'">'+p[i]+'</option>';
+					}
+					xian.innerHTML = str;
+			}
+
+
+	</script>
+</body>
+</html>

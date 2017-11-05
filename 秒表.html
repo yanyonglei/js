@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<script>
+		window.onload = function ()
+		{
+		
+			var oT = document.getElementById('txt');
+			var oStart = document.getElementById('start');
+			var oStop = document.getElementById('stop');
+			var oReset = document.getElementById('reset');
+			
+			var k=0;
+			var timer=null;
+			oStart.onclick = function () {
+				
+				this.disabled=true;
+				timer=setInterval(function(){
+
+					k++;
+
+					var m=parseInt(k/100);
+					
+					var s=k%100;
+
+					oT.value=toDb(m)+':'+toDb(s);
+					
+					
+				},10);
+
+			}
+
+			function toDb(m){
+
+				return m<10?'0'+m:m+" ";
+			}
+
+			oStop.onclick = function () {
+				oStart.disabled=false;
+				clearInterval(timer);
+
+			}
+
+			oReset.onclick=function(){
+
+				oStart.disabled=false;
+				oT.value="00:00";
+				k=0;
+				clearInterval(timer);
+			}
+		}
+		</script>
+	</head>
+	
+	<body>
+		<input type="text" value="00:00" id="txt"/>
+		<input type="button" value="开始" id="start"/>
+		<input type="button" value="暂停" id="stop"/>
+		<input type="button" value="重置" id="reset"/>
+
+		<div class=""></div>
+	</body>
+</html>

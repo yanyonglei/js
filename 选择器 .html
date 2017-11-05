@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+
+		window.onload=function(){
+			var all=document.getElementById('all');
+
+			var no=document.getElementById('no');
+
+			var rev=document.getElementById('rev');
+
+			var cb=document.getElementById('cb');
+
+			var divBox=document.getElementById('box');
+
+			var select=divBox.getElementsByTagName('input');
+
+
+			all.onclick=function(){
+
+				for(var i=0;i<select.length;i++){
+
+					select[i].checked=true;
+				}
+
+				cb.checked=true;
+			}
+
+			no.onclick=function(){
+
+				for(var i=0;i<select.length;i++){
+					select[i].checked=false;
+				}
+				cb.checked=false;
+			}
+
+			//反选
+			rev.onclick=function(){
+
+				for(var i=0;i<select.length;i++){
+
+					if(select[i].checked==true){
+
+						select[i].checked=false;
+					}else{
+						select[i].checked=true;
+					}	
+				}
+
+			}
+			//联动选择
+			cb.onclick=function()
+			{
+				if(cb.checked==true){
+
+					for(var i=0;i<select.length;i++){
+						select[i].checked=true;
+					}
+				}else{
+					for(var i=0;i<select.length;i++){
+						select[i].checked=false;
+					}
+				}
+				
+			}
+			for(var k=0;k<select.length;k++){
+
+					select[k].onclick=function(){
+
+						var m=0;
+						for(var i=0;i<select.length;i++){
+								if(select[i].checked==true){
+									m++;
+								}
+						}
+						if(m==select.length){
+							cb.checked=true;
+						}else{
+							cb.checked=false;
+						}
+					}
+			}
+
+		}
+
+	</script>
+</head>
+<body>
+	<input type="button"  value="全选" id='all'>
+	<input type="button"  value="全不选" id="no">
+	<input type="button"  value="反选" id='rev'>
+	<input type="checkbox"  id="cb" >
+
+	<div id="box">
+		<input type="checkbox"  >
+		<input type="checkbox"  >
+		<input type="checkbox"  >
+		<input type="checkbox"  >
+		<input type="checkbox"  >
+		<input type="checkbox"  >
+		<input type="checkbox"  >
+
+	</div>
+</body>
+</html>

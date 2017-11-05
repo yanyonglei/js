@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		.list{
+			width: 1190px;
+			height: 410px;
+			border: 5px solid red;
+			overflow:hidden; 
+			margin:100px auto;
+			position: relative;
+		}
+		.Ulwidth{
+			width:7140px;
+			height: 410px;
+			background:#ff0;
+			position: absolute;
+			top:0px;
+			left: 0px;
+		}
+		.Ulwidth li{
+			float: left;
+		}
+		.list .zuo{
+			width:40px;
+			height:100px;
+			position: absolute;
+			top:155px;
+			left: 0px;
+			font-size: 30px;
+			text-align: center;
+			line-height: 100px;
+			color: #fff;
+			background: rgba(255,255,255,0.3);
+			cursor: pointer;
+		}
+		.list .you{
+			width:40px;
+			height:100px;
+			color: #fff;
+			font-size: 30px;
+			text-align: center;
+			line-height: 100px;
+			background: rgba(255,255,255,0.3);
+			position: absolute;
+			top:155px;
+			right: 0px;
+			cursor: pointer;
+		}
+		.list .bottum{
+		width: 400px;
+		height:40px;
+		position: absolute;
+		left: 395px;
+		bottom: 0px;
+		text-align: center;
+		}
+		.list .bottum span{
+			width: 20px;
+			height:20px;
+			border-radius:10px;
+			background: #fff;
+			opacity: 0.5;
+			text-align: center;
+			line-height: 20px;
+			display: inline-block;
+			margin-left: 10px;
+			cursor: pointer;
+		}
+		.list .bottum span.moren{
+			background: #444;
+			opacity: 0.8;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var obox = document.getElementById('box');
+			var oLeft = document.getElementById('zuo');
+			var oRight = document.getElementById('you');
+			var os = document.getElementById('Spa');
+			var ospan = os.getElementsByTagName('span');
+			var oUl = document.getElementById('oul');
+			var n=0;
+			var timer=null;
+			oRight.onclick= next;
+			oLeft.onclick = prev;
+			//向左轮播
+			function prev(){
+				n--;
+				if(n<0){
+					n=5;
+				}
+				ret();
+			}
+			//向右轮播
+			function next(){
+				n++;
+				if(n>5){
+					n=0;
+				}
+				tiao();
+			}
+			//执行向左轮播
+			function ret(){
+				var m=n*1190;
+				for(var i=0;i<ospan.length;i++){
+					ospan[i].className='';
+				}
+				ospan[n].className='moren';
+				var k = (parseInt(n)+1)*1190;
+				if(n!=5){
+					var timer3 = setInterval(function(){
+					k-=20;
+					if(k<=m){
+						k=m;
+						clearInterval(timer3);
+					}
+					oUl.style.left='-'+k+'px';
+					},5);
+				}else{
+					oUl.style.left='-'+m+'px';
+				}
+			}
+			//执行向右轮播
+			function tiao(){
+				var m=n*1190;
+				for(var i=0;i<ospan.length;i++){
+					ospan[i].className='';
+				}
+				ospan[n].className='moren';
+				var k = (n-1)*1190;
+				if(n!=0){
+					var timer2 = setInterval(function(){
+						k+=20;
+						if(k>=m){
+							k=m;
+							clearInterval(timer2);
+						}
+						oUl.style.left='-'+k+'px';
+					},5);
+				}else{
+					oUl.style.left='-'+m+'px';
+				}
+			}
+			timer = setInterval(next,1000);
+			obox.onmouseover=function(){
+				clearInterval(timer);
+			}
+			obox.onmouseout=function(){
+				timer = setInterval(next,1000);
+			}
+
+			for(var i=0;i<ospan.length;i++){
+				ospan[i].setAttribute('hangjian',i);
+				var lasted=0;
+				ospan[i].onclick=function(){
+					n=this.getAttribute('hangjian');
+					for(var i=0;i<ospan.length;i++){
+						ospan[i].className='';
+					}
+					ospan[n].className='moren';
+					if(n>=lasted){
+						tiao();
+					}else{
+						ret();
+					}
+					lasted = n;
+				}
+			}
+		}
+
+
+	</script>
+</head>
+<body>
+<div class="list" id="box">
+	 <ul class="Ulwidth" id="oul">
+		<li><img src="001.jpg"></li>
+		<li><img src="002.jpg"></li>
+		<li><img src="003.jpg"></li>
+		<li><img src="004.jpg"></li>
+		<li><img src="005.jpg"></li>
+		<li><img src="006.jpg"></li>
+	</ul>
+	<div class="zuo" id="zuo"><</div>
+	<div class="you" id="you">></div>
+	<span class="bottum" id="Spa">
+		<span class="moren">1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+		<span>5</span>
+		<span>6</span>
+	</span>
+</div>
+
+</body>
+</html>

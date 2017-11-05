@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>计算器</title>
+		<meta charset="utf-8">
+	</head>
+	<script type="text/javascript">
+
+		window.onload=function(){
+			//第一个值
+			
+			//加
+			var jia=document.getElementById('jia');
+			jia.onclick=function(){
+				var first=document.getElementById('first').value;
+			//第二个值
+		
+			var second=document.getElementById('second').value;
+					first=Number(first);
+					second=Number(second);
+					var sum=first+second;
+					alert(sum);
+					return true ;
+			}
+			//减
+			var jian=document.getElementById('jian');
+			jian.onclick=function(){
+				var first=document.getElementById('first').value;
+			//第二个值
+		
+			var second=document.getElementById('second').value;
+				first=Number(first);
+				second=Number(second);
+				alert(first-second);
+				return true ;
+			}
+
+			//乘
+			var cheng=document.getElementById('cheng');
+			cheng.onclick=function(){
+				var first=document.getElementById('first').value;
+				var second =document.getElementById('second').value;
+					first=Number(first);
+					second=Number(second);
+					 alert(first*second);
+					 return true;
+			}
+
+			//除
+			var chu=document.getElementById('chu');
+			chu.onclick=function(){
+				var first=document.getElementById('first').value;
+				var second=document.getElementById('second').value;
+					first=Number(first);
+					second=Number(second);
+					if(second==0){
+					 	alert('第二个值不能为 0 ');
+					 	return false;
+					}else{
+						alert(first/second);
+						return true;
+					}
+					
+			}
+
+		}
+
+
+	</script>
+	<body>
+		<form>
+			
+			<input type="text" size="30" id="first" name=""  >
+			<br/>
+			
+			<br/>
+			<input type="text" size="30" id="second" name="">
+			<br/>
+			<br/>
+
+			<input type="button" id="jia" name="" value="加">
+			<input type="button" id="jian" name="" value="减">
+			<input type="button" id="cheng" name="" value="乘">
+			<input type="button" id="chu" name="" value="除">
+			<br/>
+		</form>
+	</body>
+</html>

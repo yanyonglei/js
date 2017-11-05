@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+	*{
+		margin:0px;
+		padding:0px;
+	}
+	#box{
+		width: 1190px;
+		height:410px;
+		margin-top: 100px;
+		margin-left: 120px;
+		position: relative;
+	}
+	#box div{
+		display: none; 
+	}
+	#box .active{
+		display: block;
+	}
+	#box .zuo{
+		width:40px;
+		height:100px;
+		background: rgba(255,255,255,0.3);
+		text-decoration: none;
+		position: absolute;
+		font-size: 30px;
+		text-align: center;
+		line-height: 100px;
+		color: #fff;
+		top:155px;
+		left: 0px;
+	}
+	#box .you{
+		width:40px;
+		height:100px;
+		color: #fff;
+		font-size: 30px;
+		text-align: center;
+		line-height: 100px;
+		background: rgba(255,255,255,0.3);
+		position: absolute;
+		top:155px;
+		right: 0px;
+		text-decoration: none;
+	}
+	#box .bottum{
+		width: 400px;
+		height:40px;
+		position: absolute;
+		left: 395px;
+		bottom: 0px;
+		text-align: center;
+	}
+	#box .bottum span{
+		width: 20px;
+		height:20px;
+		border-radius:10px;
+		background: #fff;
+		opacity: 0.5;
+		text-align: center;
+		line-height: 20px;
+		display: inline-block;
+		margin-left: 10px;
+		cursor: pointer;
+	}
+	#box .bottum span.moren{
+		background: #444;
+		opacity: 0.8;
+	}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oLeft = document.getElementById('zuo');
+		var oRight = document.getElementById('you');
+		var osp = document.getElementById('Spa');
+		var ospan = osp.getElementsByTagName('span');
+		var obox = document.getElementById('box');
+		var odiv = obox.getElementsByTagName('div');
+		var n=0;
+		var timer=null;
+		oLeft.onclick = prev;
+		function prev(){
+			n--;
+			if(n<0){
+				n=ospan.length-1;
+			}
+			tiaozhuan();
+		}
+		function next(){
+			n++;
+			if(n>ospan.length-1){
+				n=0;
+			}
+			tiaozhuan();
+		}
+		oRight.onclick = next;
+		function tiaozhuan(){
+			for(var i=0;i<ospan.length;i++){
+				ospan[i].className="";
+				odiv[i].className='';
+			}
+			ospan[n].className='moren';
+			odiv[n].className='active';
+		}
+		for(var i=0;i<ospan.length;i++){
+			ospan[i].setAttribute('hangjian',i);
+			ospan[i].onclick=function(){
+				n=this.getAttribute('hangjian');
+				for(var i=0;i<odiv.length;i++){
+					odiv[i].className='';
+					ospan[i].className='';
+				}
+				ospan[n].className='moren';
+				odiv[n].className='active';
+			}
+		}
+		timer = setInterval(next,500);
+		obox.onmouseover=function(){
+			clearInterval(timer);
+		}
+		obox.onmouseout=function(){
+			timer = setInterval(next,500);
+		}
+	}
+
+	</script>
+</head>
+<body>
+<div id="box">
+	<a href="javascript:;" class="zuo" id="zuo"><</a>
+	<a href="javascript:;" class="you" id="you">></a>
+	<span class="bottum" id="Spa">
+		<span class="moren">1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+		<span>5</span>
+		<span>6</span>
+	</span>
+	<div class="active"><img src="001.jpg" /></div>
+	<div><img src="002.jpg"/></div>
+	<div><img src="003.jpg"/></div>
+	<div><img src="004.jpg"/></div>
+	<div><img src="005.jpg"/></div>
+	<div><img src="006.jpg"/></div>
+	
+	
+</div>
+</body>
+</html>

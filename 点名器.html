@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		
+		p{
+			width:70px;
+			height:30px;
+			border: 2px dashed red;
+			line-height: 30px;
+			text-align: center;
+
+		}
+	</style>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+
+		window.onload=function(){
+
+			var startBtn=document.getElementById('start');
+			var endBtn=document.getElementById('end');
+			var box=document.getElementById('box');
+			var name=['赵文豪','闫永磊','牛鑫','邵辉辉','杨准'];
+			var timer=null;
+			var n=0;
+			start.onclick=function(){
+
+				start.disabled=true;
+
+				timer=setInterval(function(){
+					
+					if(name[n]!=null){
+						document.title=name[n];
+						box.innerHTML=name[n];
+					}
+					n++;
+
+					if(n>name.length-1){
+						n=0;
+					}
+				},30);
+			}
+
+			end.onclick=function(){
+				clearInterval(timer);
+				start.disabled=false;
+			}
+
+		}
+	</script>
+
+</head>
+<body>
+	<p id="box">是你吗</p>
+	<input type="button"  id='start' value="开始">
+	<input type="button"  id='end' value="暂停">
+</body>
+</html>

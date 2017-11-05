@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding: 0px;
+		}
+		div{
+			width:900px;
+			border: 1px solid red;
+			margin :0 auto;
+			overflow: hidden;
+		}
+		ul{
+			width:250px;
+			border:1px solid #000;
+			float: left;
+			margin :24px;
+		}
+		li{
+			list-style: none;
+			border:1px solid tomato;
+			margin:5px;
+		}
+	</style>
+	<script type="text/javascript">
+
+		window.onload=function(){
+
+			var oTmp=document.getElementsByTagName('ul');
+			var aUl=[];
+
+			var color=['green','pink','tomato','blue','yellow'];
+			var bFlag=0;
+
+			//将标签元素加入数组
+			for(var k=0;k<oTmp.length;k++){
+				aUl.push(oTmp[k]);
+			}
+			createLi();
+			//可视区域的高度
+			var clientHeight=document.documentElement.clientHeight;
+
+			window.onscroll=function(){
+				//滚动区域的高度
+				var scrolltop=document.body.scrollTop||document.documentElement.scrollTop;
+				//获取最大的滚动距离
+				var scrollHeight=document.documentElement.clientHeight;
+
+				if (clientHeight+scrolltop>=scrollHeight-5) {
+
+					if (bFlag>=5) {
+
+						return false;
+					}
+					createLi();
+				}
+
+			}
+			function createLi(){
+				bFlag++;
+				for(var i=0;i<30;i++){
+
+					var oLi=document.createElement('li');
+
+					var oH=rand(100,300);
+
+					oLi.innerHTML=i;
+					oLi.style.height=oH+'px';
+					oLi.style.fontSize='40px';
+					oLi.style.lineHeight=oH+'px';
+					oLi.style.textAlign='center';
+					oLi.style.background=color[bFlag-1];
+
+					//排序
+					aUl.sort(function(aUl1,aUl2){
+						return aUl1.offsetHeight-aUl2.offsetHeight;
+					});
+					aUl[0].appendChild(oLi);
+				}
+			}
+			function rand(n,m){
+
+				return parseInt(Math.random()*(m-n+1)+n);
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+</body>
+</html>

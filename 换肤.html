@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>换肤</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" id="link" href="1.css">
+	<script type="text/javascript">
+		window.onload=function(){
+
+			
+			var change=document.getElementById('change');
+			var reset=document.getElementById('reset');
+
+			change.onclick=function(){
+				var link =document.getElementById('link');
+				link.href="2.css";
+			}
+
+			reset.onclick=function(){
+				var link =document.getElementById('link');
+				link.href="1.css";
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<input type="button" id="change" value="换肤">
+	<input type="button" id="reset" value="还原">
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#wai{
+			width:500px;
+			height: 30px;
+			border:1px solid green;
+		}
+		#nei{
+			background: pink;
+			height: 30px;
+			width:0;
+			float: left;
+		}
+
+		.clearFix:after{
+			display:block;
+			content:'';
+			clear:both;
+			zoom:1;
+		}
+		#status{
+
+		}
+		
+	</style>
+	<script type="text/javascript">
+			window.onload=function(){
+
+				var nei=document.getElementById('nei');
+				var startBtn=document.getElementById('start');
+				var endBtn=document.getElementById('end');
+				var status=document.getElementById('status');
+				var n=0;
+				var timer=null;
+				var bFlag=false;
+				startBtn.onclick=function(){
+
+					if(bFlag){
+						return ;
+					}
+					bFlag=true;
+					timer=setInterval(function(){
+						n=n+5;
+						nei.style.width=n+"px";
+						
+						status.innerHTML=parseInt((n/500)*100)+'%';
+						if(n==500){
+
+								bFlag=false;
+								start.disabled=false;
+								n=0;
+								clearInterval(timer);
+						}
+
+					},30);
+				}
+
+				end.onclick=function(){
+					clearInterval(timer);
+					bFlag=false;
+				
+				}
+			}
+	</script>
+</head>
+<body>
+	<div id="wai">
+		<div id="nei" class="clearFix"></div>
+	</div>
+	<div id="status">0%</div>
+	<br/>
+	<input type="button"  id='start' value="开始">
+	<input type="button"  id='end' value="暂停">
+</body>
+</html>

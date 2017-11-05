@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			width:440px;
+			height:300px;
+			border: 1px solid red;
+			margin :250px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		a{
+			width:440px;
+			height: 150px;
+			background: red;
+			position: absolute;
+			opacity: 0;
+		}
+		#up{
+			top:0;
+			left:0;
+		}
+		#down{
+			bottom:0;
+			left:0;
+		}
+		img{
+			position: absolute;
+			top:0;
+			left:0;
+
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var oImg=document.getElementById("img");
+			var oUp=document.getElementById('up');
+			var oDown=document.getElementById('down');
+
+			var n=0;
+			var min=300-3895;
+
+			var timer=null;
+
+			oUp.onmouseover=function(){
+				timer=setInterval(function(){
+					n-=20;
+					if (n<min) {
+						clearInterval(timer);
+						n=min;
+					}
+					oImg.style.top=n+'px';
+				},30);
+			}
+
+			oDown.onmouseover=function(){
+				timer=setInterval(function(){
+					n+=20;
+					if(n>=0){
+						clearInterval(timer)
+						n=0;
+					}
+					oImg.style.top=n+'px';
+				},30);
+			}
+
+			oDown.onmouseout=oUp.onmouseout=clear;
+			function clear(){
+				clearInterval(timer);
+			}
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<img src="1.jpg" id="img"/>
+		<a href="javascript:;" id="up"></a>
+		<a href="javascript:;" id="down"></a>
+	</div>
+</body>
+</html>

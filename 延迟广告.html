@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<style>
+			*{margin:0;padding:0;}
+			div{position:relative;width:900px;height:550px;background:pink;margin:0 auto;display:none;border:5px solid red;overflow:hidden;}
+			.cha{position:absolute;right:0;top:0;width:50px;height:50px;border:1px solid #666;font-size:50px;font-weight:bold;text-align:center;line-height:50px;cursor:pointer;}
+			.hidden{display:block;font-size:100px;font-weight:bold;color:red;text-align:center;}
+		</style>
+		<script>
+		
+			window.onload = function()
+			{
+				var timer = null;
+				
+				var oDiv = document.getElementsByTagName('div')[0];
+				var oX = document.getElementsByTagName('span')[1];
+				var oH = document.getElementsByTagName('span')[0];
+				
+				timer = setTimeout(function(){
+					var n = 5;
+					oDiv.style.display = 'block';
+					setInterval(function(){
+						n--;
+						if (n==0) {
+							oDiv.style.display = 'none';
+						}
+						oH.innerHTML = n+'秒后消失';
+						
+					},1000);
+					
+					clearTimeout(timer);
+					
+				} , 3000);
+				
+				oX.onclick = function () {
+					oDiv.style.display = 'none';
+				}
+				
+			}
+		</script>
+	</head>
+	
+	<body>
+		<div>
+			<span class="hidden">5秒后消失</span>
+			<img src="my.jpg" />
+			<span class="cha">X</span>
+			
+		</div>
+	</body>
+</html>

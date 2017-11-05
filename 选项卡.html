@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<style type="text/css">
+		input{
+			width:80px;
+			height: 30px;
+			background: #ccc;
+		}
+		div{
+			width:300px;
+			height: 300px;
+			line-height: 300px;
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			background:#999;
+			display:none;
+		}
+
+		.show{
+			display:block;
+
+		}
+		.active{
+			width:90px;
+			height: 30px;
+			background: pink;
+		}
+
+	</style>
+	<script type="text/javascript">
+
+	
+		window.onload=function(){
+
+				var btn=document.getElementsByTagName('input');
+				var div=document.getElementsByTagName('div');
+
+				for(var k=0;k<btn.length;k++){
+
+					btn[k].indexData=k;
+					btn[k].onclick=function(){
+
+					//	alert(1);
+						for(var i=0;i<btn.length;i++)
+						{
+							btn[i].className='';
+							div[i].className='';
+						}
+
+						btn[this.indexData].className="active";
+						div[this.indexData].className='show';
+					}
+
+					/*//鼠标覆盖事件
+					btn[k].onmouseover=function(){
+
+
+						for(var i=0;i<btn.length;i++)
+						{
+							btn[i].className='';
+							div[i].className='';
+						}
+
+						btn[this.indexData].className="active";
+						div[this.indexData].className='show';
+					}*/
+
+				}
+
+
+
+
+
+		}
+
+	</script>
+</head>
+<body>
+	<input type="button" value="甲" class="active" >
+	<input type="button" value="乙">
+	<input type="button" value="丙">
+	<input type="button" value="丁">
+
+	<div class="show">甲</div>
+	<div background="#f90">乙</div>
+	<div background="#336699">丙</div>
+	<div  background="#123456">丁</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+
+			window.onload=function(){
+
+				var oBtn=document.getElementById('btn');
+				var n=5;
+				var timer=null;
+				var bFlag=false;
+
+				oBtn.onclick=function(){
+					
+					if(bFlag){
+						return ;
+					}
+					bFlag=true;
+
+					_this=this;
+
+					_this.value='5秒后重新发送';
+
+					timer=setInterval(function(){
+						n--;
+						_this.value=n+'秒后重新发送';
+
+						if(n==0){
+							clearInterval(timer);
+							_this.value="重新发送";
+							n=5;
+							bFlag=false;
+						}
+					},1000);
+
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="发送" id="btn">
+	</body>
+</html>
